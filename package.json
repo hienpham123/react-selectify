@@ -1,7 +1,7 @@
 {
   "name": "react-selectify",
   "version": "0.1.2",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@fluentui/font-icons-mdl2": "8.5.54",
     "@fluentui/react": "^8.122.1",
