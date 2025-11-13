@@ -90,20 +90,21 @@ interface ReactSelectifyProps {
 }
 
 
-export default function ReactSelectify({
-    options = [],
-    groups = [],
-    selectedKeys = [],
-    onChange,
-    disabled = false,
-    placeholder,
-    positionOffset = 'bottom',
-    styles = {},
-    showTooltip = false,
-    className = '',
-    multiple = false,
-    renderOption
-}: ReactSelectifyProps) {
+export default function ReactSelectify(props: ReactSelectifyProps) {
+    const {
+        options = [],
+        groups = [],
+        selectedKeys = [],
+        onChange,
+        disabled = false,
+        placeholder,
+        positionOffset = 'bottom',
+        styles = {},
+        showTooltip = false,
+        className = '',
+        multiple = false,
+        renderOption
+    } = props;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>("");
