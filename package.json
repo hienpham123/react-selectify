@@ -1,6 +1,6 @@
 {
   "name": "react-selectify",
-  "version": "0.1.5",
+  "version": "0.1.4",
   "private": false,
   "type": "module",
   "dependencies": {
@@ -56,7 +56,7 @@
     "test": "jest --watchAll",
     "eject": "react-scripts eject",
     "update-version": "node bump-version.js",
-    "publish:all": "npm run update-version && git add . && git commit -m \"feat: update version and README\" && git push origin main && rollup -c && npm publish --access public"
+    "publish:all": "npm run update-version && git add . && git commit -m \"feat: update version and README\" && git push origin master && rollup -c && npm publish --access public"
   },
   "eslintConfig": {
     "extends": [
