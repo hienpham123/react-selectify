@@ -1,2 +1,2 @@
-export { default as ReactSelectify } from './components/ReactSelectify';
-export type { Option, OptionGroup, ReactSelectifyProps } from './types';
+import '@fluentui/react/dist/css/fabric.css';
+import './demo/index.css';

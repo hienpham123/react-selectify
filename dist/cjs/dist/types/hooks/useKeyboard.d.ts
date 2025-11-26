@@ -14,5 +14,6 @@ export declare function useKeyboard({ isOpen, filteredOptions, selected, multipl
     highlightIndex: number;
     handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => boolean | undefined;
     resetHighlight: () => void;
+    setHighlight: (index: number) => void;
 };
 export {};

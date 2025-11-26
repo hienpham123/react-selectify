@@ -36,7 +36,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".hh-Multi-Select {\r\n    position: relative !important;\r\n    font-family: sans-serif;\r\n    color: #1B242A;\r\n    width: auto;\r\n    box-sizing: border-box;\r\n    font-family: \"Segoe UI\", \"Segoe UI Web (West European)\", \"Segoe UI\", -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", sans-serif;\r\n}\r\n\r\n.hh-Input-Display {\r\n    width: 100%;\r\n    border: none;\r\n    outline: none;\r\n    border-radius: 6px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    cursor: pointer;\r\n}\r\n\r\n.hh-Input-Display:focus {\r\n    cursor: text;\r\n}\r\n\r\n.hh-Dropdown {\r\n    position: absolute !important;\r\n    top: 100%;\r\n    left: 0;\r\n    background: #ffffff;\r\n    border-radius: 2px;\r\n    box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.11) 0px 0.6px 1.8px 0px;\r\n    outline: transparent;\r\n    z-index: 99;\r\n    transition: all 0.15s ease;\r\n    width: auto !important;\r\n    min-width: 100% !important;\r\n}\r\n\r\n.hh-Dropdown.top {\r\n    top: auto;\r\n    bottom: 100%;\r\n}\r\n\r\n.hh-Options-List {\r\n    overflow-y: auto;\r\n    max-height: 300px;\r\n}\r\n\r\n.hh-Option-Item {\r\n    display: flex !important;\r\n    align-items: center;\r\n    margin-bottom: 0 !important;\r\n    padding: 6px 8px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n    font-weight: 400;\r\n    white-space: nowrap;\r\n    text-overflow: ellipsis;\r\n    min-width: 0px;\r\n    max-width: 100%;\r\n    overflow-wrap: break-word;\r\n    -webkit-font-smoothing: antialiased;\r\n}\r\n\r\n.hh-Option-GroupLabel {\r\n    padding: 6px 8px;\r\n    font-weight: 600;\r\n    color: #3C8A2E;\r\n}\r\n\r\n.hh-Option-Item:hover {\r\n    background-color: #f5f5f5;\r\n}\r\n\r\n.hh-Option-Item.highlighted {\r\n    border: 1px solid #000;\r\n    outline: none;\r\n}\r\n\r\n.hh-No-Result {\r\n    padding: 10px;\r\n    color: #999;\r\n    text-align: center;\r\n    font-size: 14px;\r\n}\r\n\r\n.hh-Input-Wrapper.disabled,\r\n.hh-Option-Item.disabled {\r\n    opacity: 0.6;\r\n    pointer-events: none;\r\n    color: #aaa;\r\n}\r\n\r\n.hh-ChevronDown-Icon {\r\n    position: absolute;\r\n    right: 2px;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    pointer-events: none;\r\n    color: #888;\r\n    background: #f5f5f5;\r\n    padding: 4.5px 6px;\r\n    cursor: pointer !important;\r\n}\r\n\r\n.hh-Input-Wrapper:focus-within .hh-ChevronDown-Icon {\r\n    padding: 3.5px 6px !important;\r\n}";
+var css_248z = ".hh-Multi-Select {\r\n    position: relative !important;\r\n    font-family: sans-serif;\r\n    color: #1B242A;\r\n    width: auto;\r\n    box-sizing: border-box;\r\n    font-family: \"Segoe UI\", \"Segoe UI Web (West European)\", \"Segoe UI\", -apple-system, BlinkMacSystemFont, Roboto, \"Helvetica Neue\", sans-serif;\r\n}\r\n\r\n.hh-Input-Display {\r\n    width: 100%;\r\n    border: none;\r\n    outline: none;\r\n    border-radius: 6px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    cursor: pointer;\r\n}\r\n\r\n.hh-Input-Display:focus {\r\n    cursor: text;\r\n}\r\n\r\n.hh-Dropdown {\r\n    position: absolute !important;\r\n    top: 100%;\r\n    left: 0;\r\n    background: #ffffff;\r\n    border-radius: 2px;\r\n    box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.11) 0px 0.6px 1.8px 0px;\r\n    outline: transparent;\r\n    z-index: 99;\r\n    transition: all 0.15s ease;\r\n    width: auto !important;\r\n    min-width: 100% !important;\r\n}\r\n\r\n.hh-Dropdown.top {\r\n    top: auto;\r\n    bottom: 100%;\r\n}\r\n\r\n.hh-Options-List {\r\n    overflow-y: auto;\r\n    max-height: 300px;\r\n}\r\n\r\n.hh-Option-Item {\r\n    display: flex !important;\r\n    align-items: center;\r\n    margin-bottom: 0 !important;\r\n    padding: 6px 8px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n    font-weight: 400;\r\n    white-space: nowrap;\r\n    text-overflow: ellipsis;\r\n    min-width: 0px;\r\n    max-width: 100%;\r\n    overflow-wrap: break-word;\r\n    -webkit-font-smoothing: antialiased;\r\n    border: 1px solid transparent;\r\n    box-sizing: border-box;\r\n    transition: border-color 0.15s ease;\r\n}\r\n\r\n.hh-Option-GroupLabel {\r\n    padding: 6px 8px;\r\n    font-weight: 600;\r\n    color: #3C8A2E;\r\n}\r\n\r\n.hh-Option-Item:hover {\r\n    background-color: transparent;\r\n    border: 1px solid #7FD16F;\r\n    outline: none;\r\n}\r\n\r\n.hh-Option-Item.highlighted {\r\n    background-color: #f5f5f5;\r\n    border: 1px solid transparent;\r\n    outline: none;\r\n}\r\n\r\n.hh-Option-Item.highlighted:hover {\r\n    background-color: #f5f5f5;\r\n    border: 1px solid #7FD16F;\r\n}\r\n\r\n.hh-No-Result {\r\n    padding: 10px;\r\n    color: #999;\r\n    text-align: center;\r\n    font-size: 14px;\r\n}\r\n\r\n.hh-Input-Wrapper.disabled,\r\n.hh-Option-Item.disabled {\r\n    opacity: 0.6;\r\n    pointer-events: none;\r\n    color: #aaa;\r\n}\r\n\r\n.hh-ChevronDown-Icon {\r\n    position: absolute;\r\n    right: 2px;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    pointer-events: none;\r\n    color: #888;\r\n    background: #f5f5f5;\r\n    padding: 4.5px 6px;\r\n    cursor: pointer !important;\r\n}\r\n\r\n.hh-Input-Wrapper:focus-within .hh-ChevronDown-Icon {\r\n    padding: 3.5px 6px !important;\r\n}";
 styleInject(css_248z);
 
 function useSelection({ selectedKeys, options, multiple, onChange }) {
@@ -171,7 +171,10 @@ function useKeyboard({ isOpen, filteredOptions, selected, multiple, onSelect, op
     const resetHighlight = React.useCallback(() => {
         setHighlightIndex(-1);
     }, []);
-    return { highlightIndex, handleKeyDown, resetHighlight };
+    const setHighlight = React.useCallback((index) => {
+        setHighlightIndex(index);
+    }, []);
+    return { highlightIndex, handleKeyDown, resetHighlight, setHighlight };
 }
 
 function useClickOutside({ ref, isOpen, onClose, inputRef }) {
@@ -468,7 +471,7 @@ function ReactSelectify(props) {
     }, [isOpen, positionOffset, inputRef]);
     // Create handleSelect that will be used by both keyboard and click handlers
     const handleSelectRef = React.useRef(() => { });
-    const { highlightIndex, handleKeyDown, resetHighlight } = useKeyboard({
+    const { highlightIndex, handleKeyDown, resetHighlight, setHighlight } = useKeyboard({
         isOpen,
         filteredOptions,
         selected,
@@ -529,6 +532,19 @@ function ReactSelectify(props) {
         onClose: handleClose,
         inputRef
     });
+    // When dropdown opens, highlight selected item in single select mode
+    React.useEffect(() => {
+        if (isOpen && !multiple && selected.length > 0 && filteredOptions.length > 0) {
+            // Find the first selected option in filteredOptions
+            const firstSelectedIndex = filteredOptions.findIndex(opt => selected.some(sel => sel.key === opt.key));
+            if (firstSelectedIndex >= 0) {
+                setHighlight(firstSelectedIndex);
+            }
+        }
+        else if (!isOpen) {
+            resetHighlight();
+        }
+    }, [isOpen, multiple, selected, filteredOptions, setHighlight, resetHighlight]);
     // When dropdown opens, scroll first selected option into view
     React.useEffect(() => {
         if (isOpen && !hasOpened.current && selected.length > 0) {
