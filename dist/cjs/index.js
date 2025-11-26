@@ -118,16 +118,24 @@ function useKeyboard({ isOpen, filteredOptions, selected, multiple, onSelect, op
             setHighlightIndex((prev) => {
                 if (filteredOptions.length === 0)
                     return -1;
+                // If no item is highlighted, start from first/last item
                 let nextIndex = prev;
                 const direction = e.key === "ArrowDown" ? 1 : -1;
+                if (prev < 0) {
+                    // Start from first item (index 0) for ArrowDown, or last item for ArrowUp
+                    nextIndex = direction === 1 ? 0 : filteredOptions.length - 1;
+                }
+                else {
+                    // Move to next/previous item
+                    nextIndex = (prev + direction + filteredOptions.length) % filteredOptions.length;
+                }
+                // Skip disabled items
                 let attempts = 0;
-                do {
-                    nextIndex =
-                        (nextIndex + direction + filteredOptions.length) %
-                            filteredOptions.length;
+                while (filteredOptions[nextIndex].disabled &&
+                    attempts < filteredOptions.length) {
+                    nextIndex = (nextIndex + direction + filteredOptions.length) % filteredOptions.length;
                     attempts++;
-                } while (filteredOptions[nextIndex].disabled &&
-                    attempts < filteredOptions.length);
+                }
                 return nextIndex;
             });
         }
@@ -394,6 +402,7 @@ function ReactSelectify(props) {
     const dropdownRef = React.useRef(null);
     const optionRefs = React.useRef({});
     const hasOpened = React.useRef(false);
+    const hasSetInitialHighlight = React.useRef(false);
     const inputRef = React.useRef(null);
     // Hooks
     const { selected, handleSelection } = useSelection({
@@ -533,16 +542,31 @@ function ReactSelectify(props) {
         inputRef
     });
     // When dropdown opens, highlight selected item in single select mode
+    // But only set it once when opening, don't reset on every change
     React.useEffect(() => {
-        if (isOpen && !multiple && selected.length > 0 && filteredOptions.length > 0) {
-            // Find the first selected option in filteredOptions
-            const firstSelectedIndex = filteredOptions.findIndex(opt => selected.some(sel => sel.key === opt.key));
-            if (firstSelectedIndex >= 0) {
-                setHighlight(firstSelectedIndex);
-            }
-        }
-        else if (!isOpen) {
+        if (!isOpen) {
             resetHighlight();
+            hasSetInitialHighlight.current = false;
+        }
+        else if (isOpen && !multiple && !hasSetInitialHighlight.current) {
+            // Only set highlight once when dropdown first opens
+            if (selected.length > 0 && filteredOptions.length > 0) {
+                // Find the first selected option in filteredOptions
+                const firstSelectedIndex = filteredOptions.findIndex(opt => selected.some(sel => sel.key === opt.key));
+                if (firstSelectedIndex >= 0) {
+                    // Use setTimeout to ensure this runs after the dropdown is rendered
+                    setTimeout(() => {
+                        setHighlight(firstSelectedIndex);
+                        hasSetInitialHighlight.current = true;
+                    }, 0);
+                }
+                else {
+                    hasSetInitialHighlight.current = true;
+                }
+            }
+            else {
+                hasSetInitialHighlight.current = true;
+            }
         }
     }, [isOpen, multiple, selected, filteredOptions, setHighlight, resetHighlight]);
     // When dropdown opens, scroll first selected option into view
