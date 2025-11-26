@@ -1,87 +1,113 @@
 # React Selectify
 
-A modern, fully-typed customizable dropdown/select component for React — supports single or multiple selection, grouped options, keyboard navigation, and custom rendering.
+A powerful, customizable React select/combobox component built with FluentUI, supporting single and multiple selection, grouping, filtering, and keyboard navigation.
 
----
+## Features
+
+- ✅ Single and multiple selection modes
+- ✅ Option grouping support
+- ✅ Real-time filtering/search
+- ✅ Keyboard navigation (Arrow keys, Enter, Space, Escape)
+- ✅ Dynamic dropdown positioning (auto top/bottom)
+- ✅ Customizable styling
+- ✅ TypeScript support
+- ✅ Accessible (ARIA labels)
+- ✅ Performance optimized with React.memo
 
 ## Installation
 
-The easiest way to use `react-selectify` is to install it from NPM and include it in your own React build process (using [Browserify](http://browserify.org), etc).
-
-You can also use the standalone build by including `dist/ react-selectify.js` in your page. If you use this, make sure you have already included React, and it is available as a global variable.
-
-```
-npm install react-selectify --save
-# or
-yarn add react-selectify
+```bash
+npm install react-selectify
 ```
 
-## Demo & Examples
+## Basic Usage
 
-You can quickly test the library in a React project:
+### Single Select
 
-## 💡 Basic Usage
+```tsx
+import React, { useState } from 'react';
+import { ReactSelectify, Option } from 'react-selectify';
 
-```
-import React, { useState } from "react";
-import ReactSelectify, { Option } from "react-selectify";
-import "@fluentui/react/dist/css/fabric.css";
-import "./ReactSelectify.css";
-
-export default function App() {
-  const [selected, setSelected] = useState<string[]>([]);
+function App() {
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const options: Option[] = [
-    { key: "apple", text: "Apple" },
-    { key: "banana", text: "Banana" },
-    { key: "orange", text: "Orange", disabled: true },
-    { key: "grape", text: "Grape" },
+    { key: 'option1', text: 'Option 1' },
+    { key: 'option2', text: 'Option 2' },
+    { key: 'option3', text: 'Option 3' },
   ];
 
   return (
-    <div style={{ width: 300, margin: "40px auto" }}>
-      <ReactSelectify
-        options={options}
-        placeholder="Select a fruit..."
-        selectedKeys={selected}
-        onChange={(e, option) => {
-          if (!option) return;
-          setSelected((prev) =>
-            prev.includes(option.key)
-              ? prev.filter((k) => k !== option.key)
-              : [...prev, option.key]
-          );
-        }}
-        multiple
-        showTooltip
-      />
-    </div>
+    <ReactSelectify
+      options={options}
+      placeholder="Select an option..."
+      selectedKeys={selectedKeys}
+      onChange={(event, option) => {
+        if (option) {
+          setSelectedKeys([option.key]);
+        }
+      }}
+    />
   );
 }
 ```
 
-## 💡 Grouped Example
+### Multiple Select
 
+```tsx
+import React, { useState } from 'react';
+import { ReactSelectify, Option } from 'react-selectify';
+
+function App() {
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
+  const options: Option[] = [
+    { key: 'apple', text: 'Apple' },
+    { key: 'banana', text: 'Banana' },
+    { key: 'orange', text: 'Orange' },
+  ];
+
+  return (
+    <ReactSelectify
+      options={options}
+      multiple
+      placeholder="Select multiple options..."
+      selectedKeys={selectedKeys}
+      onChange={(event, option) => {
+        if (option) {
+          const newKeys = selectedKeys.includes(option.key)
+            ? selectedKeys.filter(k => k !== option.key)
+            : [...selectedKeys, option.key];
+          setSelectedKeys(newKeys);
+        }
+      }}
+    />
+  );
+}
 ```
-import React, { useState } from "react";
-import ReactSelectify, { OptionGroup } from "react-selectify";
 
-export default function GroupExample() {
-  const [selected, setSelected] = useState<string[]>([]);
+### With Groups
+
+```tsx
+import React, { useState } from 'react';
+import { ReactSelectify, OptionGroup } from 'react-selectify';
+
+function App() {
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const groups: OptionGroup[] = [
     {
-      label: "Fruits",
+      label: 'Fruits',
       options: [
-        { key: "apple", text: "Apple" },
-        { key: "banana", text: "Banana" },
+        { key: 'apple', text: 'Apple' },
+        { key: 'banana', text: 'Banana' },
       ],
     },
     {
-      label: "Vegetables",
+      label: 'Vegetables',
       options: [
-        { key: "carrot", text: "Carrot" },
-        { key: "broccoli", text: "Broccoli" },
+        { key: 'carrot', text: 'Carrot' },
+        { key: 'broccoli', text: 'Broccoli' },
       ],
     },
   ];
@@ -89,52 +115,147 @@ export default function GroupExample() {
   return (
     <ReactSelectify
       groups={groups}
-      selectedKeys={selected}
-      placeholder="Select items..."
       multiple
-      onChange={(e, option) => {
-        if (!option) return;
-        setSelected((prev) =>
-          prev.includes(option.key)
-            ? prev.filter((k) => k !== option.key)
-            : [...prev, option.key]
-        );
+      placeholder="Select items..."
+      selectedKeys={selectedKeys}
+      onChange={(event, option) => {
+        if (option) {
+          const newKeys = selectedKeys.includes(option.key)
+            ? selectedKeys.filter(k => k !== option.key)
+            : [...selectedKeys, option.key];
+          setSelectedKeys(newKeys);
+        }
       }}
     />
   );
 }
 ```
 
-## 💡 Custom Rendering Example
+## Props
 
+### ReactSelectifyProps
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `Option[]` | `[]` | List of options when not using groups |
+| `groups` | `OptionGroup[]` | `[]` | List of option groups for grouping options |
+| `selectedKeys` | `string[]` | `undefined` | List of selected option keys (controlled) |
+| `onChange` | `(event?, option?) => void` | - | Callback triggered when selection changes |
+| `disabled` | `boolean` | `false` | Whether the component is disabled |
+| `placeholder` | `string` | - | Placeholder text displayed in the input |
+| `positionOffset` | `'top' \| 'bottom'` | `'bottom'` | Position of the dropdown (auto-calculated if not enough space) |
+| `styles` | `{ [key: string]: React.CSSProperties }` | `{}` | Inline styles for customizing appearance |
+| `showTooltip` | `boolean` | `false` | Whether to show full option text as tooltip on hover |
+| `className` | `string` | `''` | Additional CSS class for the root element |
+| `multiple` | `boolean` | `false` | Whether multiple selections are allowed |
+| `renderOption` | `(props: any) => React.ReactNode` | - | Custom render function for each option |
+
+### Option
+
+```typescript
+interface Option {
+  key: string;           // Unique identifier
+  text: string;          // Display text
+  disabled?: boolean;    // Whether the option is disabled
+  data?: any;            // Additional data
+  selected?: boolean;    // Whether the option is selected (internal use)
+}
 ```
+
+### OptionGroup
+
+```typescript
+interface OptionGroup {
+  label: string;         // Group label
+  options: Option[];     // Options in this group
+}
+```
+
+## Advanced Usage
+
+### Custom Styling
+
+```tsx
 <ReactSelectify
-  options={[
-    { key: "js", text: "JavaScript" },
-    { key: "py", text: "Python" },
-    { key: "go", text: "Go" },
-  ]}
-  multiple
-  renderOption={({ option, selected, onSelect }) => (
-    <div
-      onClick={onSelect}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        padding: "6px 10px",
-        background: selected ? "#e5f1ff" : "transparent",
-      }}
-    >
-      <img
-        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${option.key}/${option.key}-original.svg`}
-        width={20}
-        height={20}
-        alt={option.text}
-      />
-      <span>{option.text}</span>
-    </div>
-  )}
-  onChange={(e, option) => console.log(option)}
+  options={options}
+  styles={{
+    root: { width: '300px' },
+    input: { fontSize: '16px' },
+    callOut: { maxWidth: '400px' },
+    groupLabel: { color: '#0078d4' },
+  }}
 />
 ```
+
+### Custom Option Rendering
+
+```tsx
+<ReactSelectify
+  options={options}
+  renderOption={({ option, selected, highlighted }) => (
+    <div style={{ 
+      padding: '8px',
+      backgroundColor: highlighted ? '#e1f5ff' : 'transparent',
+      fontWeight: selected ? 'bold' : 'normal'
+    }}>
+      {option.text}
+    </div>
+  )}
+/>
+```
+
+### Without Controlled State
+
+You can use the component without providing `selectedKeys` prop. The component will manage its own internal state:
+
+```tsx
+<ReactSelectify
+  options={options}
+  multiple
+  onChange={(event, option) => {
+    console.log('Selected:', option);
+  }}
+/>
+```
+
+## Keyboard Navigation
+
+- **Arrow Up/Down**: Navigate through options
+- **Enter**: Select highlighted option
+- **Space**: Select highlighted option (or type to search)
+- **Escape**: Close dropdown
+- **Type to filter**: Start typing to filter options
+
+## Styling
+
+The component uses CSS classes that you can override:
+
+- `.hh-Multi-Select` - Root container
+- `.hh-Input-Wrapper` - Input wrapper
+- `.hh-Input-Display` - Input field
+- `.hh-Dropdown` - Dropdown container
+- `.hh-Options-List` - Options list container
+- `.hh-Option-Item` - Individual option item
+- `.hh-Option-Item.highlighted` - Highlighted option
+- `.hh-Option-Item.disabled` - Disabled option
+- `.hh-Option-Group` - Option group container
+- `.hh-Option-GroupLabel` - Group label
+- `.hh-No-Result` - No results message
+
+## Requirements
+
+- React 16.8+ (with hooks support)
+- @fluentui/react ^8.0.0
+- @fluentui/font-icons-mdl2 ^8.0.0
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Repository
+
+https://github.com/hienpham123/react-selectify

@@ -1,2 +1,2 @@
-export { default as ReactSelectify } from './ReactSelectify';
-export type { Option, OptionGroup } from './ReactSelectify';
+export { default as ReactSelectify } from './components/ReactSelectify';
+export type { Option, OptionGroup, ReactSelectifyProps } from './types';

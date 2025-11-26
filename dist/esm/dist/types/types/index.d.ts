@@ -1,17 +1,16 @@
-import React$1 from 'react';
-
-interface Option {
+/// <reference types="react" />
+export interface Option {
     key: string;
     text: string;
     disabled?: boolean;
     data?: any;
     selected?: boolean;
 }
-interface OptionGroup {
+export interface OptionGroup {
     label: string;
     options: Option[];
 }
-interface ReactSelectifyProps {
+export interface ReactSelectifyProps {
     /**
      * List of options when not using groups
      * Each option should have a unique `key` and a display `text`
@@ -75,7 +74,3 @@ interface ReactSelectifyProps {
      */
     renderOption?: (props: any) => React.ReactNode;
 }
-
-declare function ReactSelectify(props: ReactSelectifyProps): React$1.JSX.Element;
-
-export { Option, OptionGroup, ReactSelectify, ReactSelectifyProps };

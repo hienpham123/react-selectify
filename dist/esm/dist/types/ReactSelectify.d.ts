@@ -75,5 +75,5 @@ interface ReactSelectifyProps {
      */
     renderOption?: (props: any) => React.ReactNode;
 }
-export default function ReactSelectify({ options, groups, selectedKeys, onChange, disabled, placeholder, positionOffset, styles, showTooltip, className, multiple, renderOption }: ReactSelectifyProps): React.JSX.Element;
+export default function ReactSelectify(props: ReactSelectifyProps): React.JSX.Element;
 export {};
