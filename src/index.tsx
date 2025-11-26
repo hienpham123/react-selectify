@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import '@fluentui/react/dist/css/fabric.css';
 import './demo/index.css';
 import App from './demo/App';
 

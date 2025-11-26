@@ -90,6 +90,10 @@ export function useKeyboard({
         setHighlightIndex(-1);
     }, []);
 
-    return { highlightIndex, handleKeyDown, resetHighlight };
+    const setHighlight = useCallback((index: number) => {
+        setHighlightIndex(index);
+    }, []);
+
+    return { highlightIndex, handleKeyDown, resetHighlight, setHighlight };
 }
 

@@ -118,7 +118,7 @@ export default function ReactSelectify(props: ReactSelectifyProps) {
     // Create handleSelect that will be used by both keyboard and click handlers
     const handleSelectRef = useRef<(event: React.KeyboardEvent<HTMLInputElement> | React.FormEvent<HTMLElement | HTMLInputElement>, option: Option, checked?: boolean) => void>(() => {});
     
-    const { highlightIndex, handleKeyDown, resetHighlight } = useKeyboard({
+    const { highlightIndex, handleKeyDown, resetHighlight, setHighlight } = useKeyboard({
         isOpen,
         filteredOptions,
         selected,
@@ -182,6 +182,21 @@ export default function ReactSelectify(props: ReactSelectifyProps) {
         onClose: handleClose,
         inputRef
     });
+
+    // When dropdown opens, highlight selected item in single select mode
+    useEffect(() => {
+        if (isOpen && !multiple && selected.length > 0 && filteredOptions.length > 0) {
+            // Find the first selected option in filteredOptions
+            const firstSelectedIndex = filteredOptions.findIndex(opt => 
+                selected.some(sel => sel.key === opt.key)
+            );
+            if (firstSelectedIndex >= 0) {
+                setHighlight(firstSelectedIndex);
+            }
+        } else if (!isOpen) {
+            resetHighlight();
+        }
+    }, [isOpen, multiple, selected, filteredOptions, setHighlight, resetHighlight]);
 
     // When dropdown opens, scroll first selected option into view
     useEffect(() => {

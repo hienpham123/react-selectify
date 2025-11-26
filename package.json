@@ -36,7 +36,7 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "start": "react-scripts start",
     "build": "rollup -c",
     "test": "jest --watchAll",
     "eject": "react-scripts eject",

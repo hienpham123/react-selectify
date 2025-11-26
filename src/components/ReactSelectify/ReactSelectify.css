@@ -59,6 +59,9 @@
     max-width: 100%;
     overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
 }
 
 .hh-Option-GroupLabel {
@@ -68,12 +71,20 @@
 }
 
 .hh-Option-Item:hover {
-    background-color: #f5f5f5;
+    background-color: transparent;
+    border: 1px solid #7FD16F;
+    outline: none;
 }
 
 .hh-Option-Item.highlighted {
-    border: 1px solid #000;
+    background-color: #f5f5f5;
+    border: 1px solid transparent;
     outline: none;
+}
+
+.hh-Option-Item.highlighted:hover {
+    background-color: #f5f5f5;
+    border: 1px solid #7FD16F;
 }
 
 .hh-No-Result {
