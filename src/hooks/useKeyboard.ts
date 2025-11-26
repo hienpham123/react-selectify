@@ -30,19 +30,27 @@ export function useKeyboard({
                 setHighlightIndex((prev) => {
                     if (filteredOptions.length === 0) return -1;
 
+                    // If no item is highlighted, start from first/last item
                     let nextIndex = prev;
                     const direction = e.key === "ArrowDown" ? 1 : -1;
+                    
+                    if (prev < 0) {
+                        // Start from first item (index 0) for ArrowDown, or last item for ArrowUp
+                        nextIndex = direction === 1 ? 0 : filteredOptions.length - 1;
+                    } else {
+                        // Move to next/previous item
+                        nextIndex = (prev + direction + filteredOptions.length) % filteredOptions.length;
+                    }
+                    
+                    // Skip disabled items
                     let attempts = 0;
-
-                    do {
-                        nextIndex =
-                            (nextIndex + direction + filteredOptions.length) %
-                            filteredOptions.length;
-                        attempts++;
-                    } while (
+                    while (
                         filteredOptions[nextIndex].disabled &&
                         attempts < filteredOptions.length
-                    );
+                    ) {
+                        nextIndex = (nextIndex + direction + filteredOptions.length) % filteredOptions.length;
+                        attempts++;
+                    }
 
                     return nextIndex;
                 });
