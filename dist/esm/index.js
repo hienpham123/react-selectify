@@ -570,7 +570,7 @@ function ReactSelectify(props) {
             React.createElement("div", { className: "hh-ChevronDown-Icon" },
                 React.createElement(Icon, { iconName: "ChevronDown", style: { fontSize: 16 } }))),
         isOpen && (React.createElement("div", { className: `hh-Dropdown ${actualPosition}` },
-            React.createElement("div", { className: "hh-Options-List", style: Object.assign({}, styles['callOut']) }, filteredGroups ? filteredGroups.map((group) => (React.createElement("div", { key: group.label, className: "hh-Option-Group" },
+            React.createElement("div", { className: "hh-Options-List", style: Object.assign({}, styles['callOut']) }, filteredGroups !== undefined ? (filteredGroups.length === 0 ? (React.createElement("div", { className: "hh-No-Result" }, "No results found")) : filteredGroups.map((group) => (React.createElement("div", { key: group.label, className: "hh-Option-Group" },
                 React.createElement("div", { style: Object.assign({}, styles['groupLabel']), className: "hh-Option-GroupLabel" }, group.label),
                 group.options.map((option) => {
                     var _a;
@@ -580,7 +580,7 @@ function ReactSelectify(props) {
                     return (React.createElement(OptionItem, { key: option.key, option: option, isSelected: isSelected, isHighlighted: isHighlighted, multiple: multiple, showTooltip: showTooltip, renderOption: renderOption, onSelect: handleSelect, optionRef: (el) => {
                             optionRefs.current[option.key] = el;
                         } }));
-                })))) : filteredOptions.map((option, i) => {
+                }))))) : filteredOptions.length === 0 ? (React.createElement("div", { className: "hh-No-Result" }, "No results found")) : filteredOptions.map((option, i) => {
                 const isSelected = selectedKeysSet.has(option.key);
                 const isHighlighted = highlightIndex === i;
                 return (React.createElement(OptionItem, { key: option.key, option: option, isSelected: isSelected, isHighlighted: isHighlighted, multiple: multiple, showTooltip: showTooltip, renderOption: renderOption, onSelect: handleSelect, optionRef: (el) => {
